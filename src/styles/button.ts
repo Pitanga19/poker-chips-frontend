@@ -23,7 +23,7 @@ const buttonStyles = StyleSheet.create({
     },
 
     unselected: {
-        backgroundColor: '#245',
+        backgroundColor: 'rgb(44, 44, 44)',
         alignItems: 'center',
     },
 
