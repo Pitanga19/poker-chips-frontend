@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Alert, View, Text, FlatList, Pressable } from 'react-native';
+import { Alert, View, Text, FlatList, Pressable, ImageBackground } from 'react-native';
 import styles from './styles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/AppNavigator';
@@ -122,22 +122,27 @@ const WinnerSelectScreen = () => {
     };
 
     return (
-        <View style={ styles.main }>
-            <View style={ styles.sectionContainer }>
-                <Text style={ styles.sectionTitle }>Select winners</Text>
+        <ImageBackground
+            source={ require('../../assets/background.png') }
+            style={ styles.background }
+        >
+            <View style={ styles.main }>
+                <View style={ styles.sectionContainer }>
+                    <Text style={ styles.sectionTitle }>Select winners</Text>
 
-                <FlatList 
-                    data={ potList }
-                    renderItem={ renderPot }
-                    keyExtractor={ (item) => item.id.toString() }
-                    style={ styles.potListContainer }
-                />
+                    <FlatList 
+                        data={ potList }
+                        renderItem={ renderPot }
+                        keyExtractor={ (item) => item.id.toString() }
+                        style={ styles.potListContainer }
+                    />
+                </View>
+                    
+                <Pressable style={ styles.submitButton } onPress={ sendWinnerSelection }>
+                    <Text style={ styles.submitButtonText }>Send Winner Selection</Text>
+                </Pressable>
             </View>
-                
-            <Pressable style={ styles.submitButton } onPress={ sendWinnerSelection }>
-                <Text style={ styles.submitButtonText }>Send Winner Selection</Text>
-            </Pressable>
-        </View>
+        </ImageBackground>
     );
 };
 

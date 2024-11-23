@@ -5,6 +5,10 @@ import listStyles from "../../styles/list";
 import buttonStyles from "../../styles/button";
 
 const winnerSelectStyles = StyleSheet.create({
+    background: {
+        ... globalStyles.background,
+    },
+    
     main: {
         ... globalStyles.main,
         paddingVertical: 12,
@@ -18,6 +22,7 @@ const winnerSelectStyles = StyleSheet.create({
 
     sectionContainer: {
         ... containerStyles.container,
+        backgroundColor: 'rgba(0, 0, 0, 0)',
         padding: 12,
         minWidth: 240,
     },
@@ -32,12 +37,12 @@ const winnerSelectStyles = StyleSheet.create({
     },
 
     potListElementContainer: {
+        ... containerStyles.container,
         ... listStyles.listElementContainer,
         marginVertical: 8,
         paddingVertical: 8,
         paddingHorizontal: 12,
         alignItems: 'center',
-        backgroundColor: 'rgb(44, 44, 44)'
     },
 
     potListItemTitle: {

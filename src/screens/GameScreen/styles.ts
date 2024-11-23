@@ -6,10 +6,12 @@ import buttonStyles from "../../styles/button";
 import listStyles from "../../styles/list";
 
 const gameStyles = StyleSheet.create({
+    background: {
+        ... globalStyles.background,
+    },
+
     main: {
         ... globalStyles.main,
-        paddingVertical: 12,
-        gap: 12,
     },
 
     mainText: {
@@ -17,6 +19,7 @@ const gameStyles = StyleSheet.create({
     },
 
     sectionHandInfoContainer: {
+        marginVertical: 12,
         flexDirection: 'row',
         width: 360,
         gap: 8,
@@ -101,10 +104,7 @@ const gameStyles = StyleSheet.create({
     },
 
     sectionPlayerListContainer: {
-        ... containerStyles.container,
         width: 360,
-        paddingVertical: 4,
-        paddingHorizontal: 8,
         flexDirection: 'column',
         gap: 4,
     },
@@ -116,7 +116,7 @@ const gameStyles = StyleSheet.create({
 
     playerListElementContainer: {
         ... listStyles.listElementContainer,
-        backgroundColor: 'rgb(44, 44, 44)',
+        ... containerStyles.container,
         flexDirection: 'row',
         alignItems: 'stretch',
         marginVertical: 4,

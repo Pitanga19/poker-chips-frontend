@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, TextInput, Pressable, Alert, Image } from 'react-native';
+import { View, Text, FlatList, TextInput, Pressable, Alert, Image, ImageBackground } from 'react-native';
 import styles from './styles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/AppNavigator';
@@ -240,57 +240,62 @@ const GameScreen = () => {
     const cardStyles = [flopCardStyle, flopCardStyle, flopCardStyle, turnCardStyle, riverCardStyle ]
 
     return (
-        <View style={ styles.main }>
-            <View style={ styles.sectionHandInfoContainer }>
-                <View style={ styles.sectionStageContainer }>
-                    <Text style={ styles.sectionTitle }>{bettingStage?.stage}</Text>
-                    <View style={ styles.sectionCardContainer }>
-                    {cardStyles.map((style, index) => (
-                        <View key={index} style={style} />
-                    ))}
+        <ImageBackground
+            source={ require('../../assets/background.png') }
+            style={ styles.background }
+        >
+            <View style={ styles.main }>
+                <View style={ styles.sectionHandInfoContainer }>
+                    <View style={ styles.sectionStageContainer }>
+                        <Text style={ styles.sectionTitle }>{bettingStage?.stage}</Text>
+                        <View style={ styles.sectionCardContainer }>
+                        {cardStyles.map((style, index) => (
+                            <View key={index} style={style} />
+                        ))}
+                        </View>
+                    </View>
+                    <View style={ styles.sectionPotListContainer }>
+                        <FlatList
+                            data={ potList || [] }
+                            renderItem={ renderPot }
+                            keyExtractor={ (item) => item.id.toString() }
+                            style={ styles.potListContainer }
+                        />
+                    </View>
+                    <View style={ styles.sectionValuesContainer }>
+                        <View style={ styles.sectionValuesItem }>
+                            <Text style={ styles.sectionValuesText }>BB value
+                            </Text>
+                            <Text style={ styles.sectionValuesTitle }>
+                                { handStage?.bigBlindValue }
+                            </Text>
+                        </View>
+                        <View style={ styles.sectionValuesItem }>
+                            <Text style={ styles.sectionValuesText }>Actual bet
+                            </Text>
+                            <Text style={ styles.sectionValuesTitle }>
+                                { bettingStage?.actualBetValue }
+                            </Text>
+                        </View>
+                        <View style={ styles.sectionValuesItem }>
+                            <Text style={ styles.sectionValuesText }>Min Raise
+                            </Text>
+                            <Text style={ styles.sectionValuesTitle }>
+                                { bettingStage?.minimumRaise }
+                            </Text>
+                        </View>
                     </View>
                 </View>
-                <View style={ styles.sectionPotListContainer }>
+                <View style={ styles.sectionPlayerListContainer }>
                     <FlatList
-                        data={ potList || [] }
-                        renderItem={ renderPot }
-                        keyExtractor={ (item) => item.id.toString() }
-                        style={ styles.potListContainer }
+                        data={ playerList || [] }
+                        renderItem={ renderPlayer }
+                        keyExtractor={ (item) => item.id }
+                        style={ styles.playerListContainer }
                     />
                 </View>
-                <View style={ styles.sectionValuesContainer }>
-                    <View style={ styles.sectionValuesItem }>
-                        <Text style={ styles.sectionValuesText }>BB value
-                        </Text>
-                        <Text style={ styles.sectionValuesTitle }>
-                            { handStage?.bigBlindValue }
-                        </Text>
-                    </View>
-                    <View style={ styles.sectionValuesItem }>
-                        <Text style={ styles.sectionValuesText }>Actual bet
-                        </Text>
-                        <Text style={ styles.sectionValuesTitle }>
-                            { bettingStage?.actualBetValue }
-                        </Text>
-                    </View>
-                    <View style={ styles.sectionValuesItem }>
-                        <Text style={ styles.sectionValuesText }>Min Raise
-                        </Text>
-                        <Text style={ styles.sectionValuesTitle }>
-                            { bettingStage?.minimumRaise }
-                        </Text>
-                    </View>
-                </View>
             </View>
-            <View style={ styles.sectionPlayerListContainer }>
-                <FlatList
-                    data={ playerList || [] }
-                    renderItem={ renderPlayer }
-                    keyExtractor={ (item) => item.id }
-                    style={ styles.playerListContainer }
-                />
-            </View>
-        </View>
+        </ImageBackground>
     );
 };
 

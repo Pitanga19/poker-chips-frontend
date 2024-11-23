@@ -6,6 +6,10 @@ import buttonStyles from "../../styles/button";
 import listStyles from "../../styles/list";
 
 const playerSelectStyles = StyleSheet.create({
+    background: {
+        ... globalStyles.background,
+    },
+    
     main: {
         ... globalStyles.main,
         paddingVertical: 12,
@@ -39,24 +43,6 @@ const playerSelectStyles = StyleSheet.create({
         fontSize: 14,
     },
 
-    playerListContainer: {
-        ... listStyles.listContainer,
-    },
-
-    playerListElementContainer: {
-        ... listStyles.listElementContainer,
-        width: 240,
-        flexDirection: 'column',
-        alignItems: 'center',
-        backgroundColor: 'rgb(44, 44, 44)',
-        marginVertical: 4,
-        padding: 4,
-    },
-
-    playerListTitle: {
-        ... globalStyles.title,
-    },
-
     newPlayerUserInput: {
         ... inputStyles.textInput,
         margin: 0,
@@ -85,6 +71,26 @@ const playerSelectStyles = StyleSheet.create({
     newPlayerButtonText: {
         ... buttonStyles.buttonText,
         fontSize: 12,
+    },
+
+    sectionPlayerListContainer: {
+    },
+
+    playerListContainer: {
+        ... listStyles.listContainer,
+    },
+
+    playerListElementContainer: {
+        ... containerStyles.container,
+        width: '100%',
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginBottom: 12,
+        padding: 4,
+    },
+
+    playerListTitle: {
+        ... globalStyles.title,
     },
 
     submitButton: {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, View, Text, TextInput, Pressable } from 'react-native';
+import { Alert, View, Text, TextInput, Pressable, Image, ImageBackground } from 'react-native';
 import styles from './styles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/AppNavigator';
@@ -56,29 +56,40 @@ const MainMenuScreen = () => {
     };
 
     return (
-        <View style={ styles.main }>
-            <View style={ styles.titleContainer }>
-                <Text style={ styles.titleText }>Poker Chips</Text>
-            </View>
-            <View style={ styles.menuContainer }>
-                <View style={ styles.menuElementContainer }>
-                    <TextInput
-                        style={ styles.menuInput }
-                        placeholder="Input BB value"
-                        placeholderTextColor= {'#888'}
-                        value={ bigBlindValue }
-                        onChangeText={ handleBigBlindValue }
-                        keyboardType="numeric"
-                        />
-                    <Pressable style={ styles.menuButton } onPress={ createNewGame }>
-                        <Text style={ styles.menuButtonText }>Start Game</Text>
-                    </Pressable>
+        <ImageBackground
+            source={ require('../../assets/background.png') }
+            style={ styles.background }
+        >
+            <View style={ styles.main }>
+
+                <View style={ styles.titleContainer }>
+                    <View style={ styles.titleImageContainer }>
+                        <Image
+                            style={ styles.titleImage }
+                            source={ require('../../assets/icon.png') }
+                            />
+                    </View>
+                </View>
+                <View style={ styles.menuContainer }>
+                    <View style={ styles.menuElementContainer }>
+                        <TextInput
+                            style={ styles.menuInput }
+                            placeholder="Input BB value"
+                            placeholderTextColor= {'#888'}
+                            value={ bigBlindValue }
+                            onChangeText={ handleBigBlindValue }
+                            keyboardType="numeric"
+                            />
+                        <Pressable style={ styles.menuButton } onPress={ createNewGame }>
+                            <Text style={ styles.menuButtonText }>Start Game</Text>
+                        </Pressable>
+                    </View>
+                </View>
+                <View style={ styles.signatureContainer }>
+                    <Text style={ styles.signatureText }>By Pitanga</Text>
                 </View>
             </View>
-            <View style={ styles.signatureContainer }>
-                <Text style={ styles.signatureText }>By Pitanga</Text>
-            </View>
-        </View>
+        </ImageBackground>
     );
 };
 

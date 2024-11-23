@@ -5,6 +5,10 @@ import inputStyles from "../../styles/input";
 import buttonStyles from "../../styles/button";
 
 const mainMenuStyles = StyleSheet.create({
+    background: {
+        ... globalStyles.background,
+    },
+
     main: {
         ... globalStyles.main,
         paddingTop: 48,
@@ -12,6 +16,16 @@ const mainMenuStyles = StyleSheet.create({
     },
 
     titleContainer: {
+    },
+
+    titleImageContainer: {
+        maxHeight: 256,
+        maxWidth: 256,
+    },
+
+    titleImage: {
+        height: 200,
+        width: 200,
     },
 
     titleText: {

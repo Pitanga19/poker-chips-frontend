@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, View, Text, FlatList, TextInput, Pressable, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Alert, View, Text, FlatList, TextInput, Pressable, TouchableWithoutFeedback, Keyboard, ImageBackground } from 'react-native';
 import styles from './styles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/AppNavigator';
@@ -114,53 +114,56 @@ const PlayerSettingScreen = () => {
 
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={ styles.main }>
-            <View style={ styles.mainContainer }>
-                <View style={ styles.sectionContainer }>
-                    <Text style={ styles.sectionTitle }>Add new player</Text>
+        <ImageBackground
+            source={ require('../../assets/background.png') }
+            style={ styles.background }
+        >
+            <View style={ styles.main }>
+                <View style={ styles.mainContainer }>
+                    <View style={ styles.sectionContainer }>
+                        <Text style={ styles.sectionTitle }>Add new player</Text>
 
-                    <TextInput
-                        style={ styles.newPlayerUserInput }
-                        placeholder="Username"
-                        placeholderTextColor= {'#888'}
-                        value={ playerID }
-                        onChangeText={ handlePlayerID }
-                    />
-
-                    <View style={ styles.newPlayerChipSection }>
                         <TextInput
-                            style={ styles.newPlayerChipInput }
-                            placeholder="Starting chips"
+                            style={ styles.newPlayerUserInput }
+                            placeholder="Username"
                             placeholderTextColor= {'#888'}
-                            value={ startingChips }
-                            onChangeText={ handleStartingChips }
-                            keyboardType="numeric"
+                            value={ playerID }
+                            onChangeText={ handlePlayerID }
                         />
 
-                        <Pressable style={ styles.newPlayerButton} onPress={ validateAddPlayer }>
-                            <Text style={ styles.newPlayerButtonText }>Add Player</Text>
-                        </Pressable>
+                        <View style={ styles.newPlayerChipSection }>
+                            <TextInput
+                                style={ styles.newPlayerChipInput }
+                                placeholder="Starting chips"
+                                placeholderTextColor= {'#888'}
+                                value={ startingChips }
+                                onChangeText={ handleStartingChips }
+                                keyboardType="numeric"
+                            />
+
+                            <Pressable style={ styles.newPlayerButton} onPress={ validateAddPlayer }>
+                                <Text style={ styles.newPlayerButtonText }>Add Player</Text>
+                            </Pressable>
+                        </View>
+                    </View>
+
+                    <View style={ styles.sectionPlayerListContainer }>
+                        <FlatList
+                            data={ playerList }
+                            renderItem={ renderPlayer }
+                            keyExtractor={(item) => item.id}
+                            style={ styles.playerListContainer}
+                        />
                     </View>
                 </View>
 
-                <View style={ styles.sectionContainer }>
-                    <Text style={ styles.sectionTitle }>Player List</Text>
-
-                    <FlatList
-                        data={ playerList }
-                        renderItem={ renderPlayer }
-                        keyExtractor={(item) => item.id}
-                        style={ styles.playerListContainer}
-                    />
+                <View style={ styles.mainContainer }>
+                    <Pressable style={ styles.submitButton} onPress={ sendPlayerList }>
+                        <Text style={ styles.submitButtonText }>Send Player List</Text>
+                    </Pressable>
                 </View>
             </View>
-
-            <View style={ styles.mainContainer }>
-                <Pressable style={ styles.submitButton} onPress={ sendPlayerList }>
-                    <Text style={ styles.submitButtonText }>Send Player List</Text>
-                </Pressable>
-            </View>
-        </View>
+        </ImageBackground>
         </TouchableWithoutFeedback>
     );
 };
